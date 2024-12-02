@@ -82,4 +82,12 @@ export class LoanEditComponent implements OnInit {
       clients => this.clients = clients
     );
   }
+
+  validateButton():boolean {
+    return !!this.loan.game &&
+           !!this.loan.client &&
+           !!this.loan.dateIni &&
+           !!this.loan.dateFinal;
+
+  } 
 }

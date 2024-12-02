@@ -18,7 +18,6 @@ export class LoanService {
   ) { }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.log('Error al hacer la solicitud', error);
     if (error.status === 409) {
       console.error('Conflicto en el servidor: ', error.message);
       return throwError(() => new Error(error.error.message));
@@ -38,8 +37,6 @@ export class LoanService {
   }
 
   getLoans(pageRequest: PageRequest): Observable<LoanPage> {
-    //console.log( pageRequest.dateIni);
-    //console.log( pageRequest.dateFinal);
     if (pageRequest.dateIni != null) {
 
       pageRequest.dateIni = new Date(this.datePipe.transform(pageRequest.dateIni, 'yyyy-MM-dd'));

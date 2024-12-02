@@ -82,9 +82,9 @@ export class LoanListComponent {
     this.pageRequest.clientId = null;
     this.pageRequest.dateFinal = null;
     this.pageRequest.dateIni = null;
-    
+    this.selectFilterItems();
     this.loadPage();
-  }
+}
 
   onSearch(): void {
     this.pageRequest.dateFinal = this.loan.dateIni;
@@ -119,7 +119,7 @@ export class LoanListComponent {
 
   deleteLoan(loan: Loan) {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
-      data: { title: "Eliminar autor", description: "Atención si borra el autor se perderán sus datos.<br> ¿Desea eliminar el autor?" }
+      data: { title: "Eliminar préstamo", description: "Atención si borra el préstamo se perderán sus datos.<br> ¿Desea eliminar el préstamo?" }
     });
 
     dialogRef.afterClosed().subscribe(result => {

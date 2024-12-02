@@ -35,7 +35,7 @@
 
             <mat-form-field class="date-picker">
                 <mat-label>Fecha de retorno</mat-label>
-                <input matInput [matDatepicker]="pickerFinal" [(ngModel)]="loan.dateFinal" name="dateFinal" required>
+                <input matInput [matDatepicker]="pickerFinal" [(ngModel)]="loan.dateFinal" name="dateFinal" [min]="loan.dateIni" required>
                 <mat-hint></mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="pickerFinal"></mat-datepicker-toggle>
                 <mat-datepicker #pickerFinal></mat-datepicker>
@@ -45,6 +45,6 @@
 
     <div class="buttons">
         <button mat-stroked-button (click)="onClose()">Cerrar</button>
-        <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+        <button mat-flat-button color="primary" [disabled]="!validateButton()" (click)="onSave()">Guardar</button>
     </div>
 </div>

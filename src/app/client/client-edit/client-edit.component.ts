@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Client } from '../model/Client';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ClientService } from '../client.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-client-edit',
@@ -11,11 +12,13 @@ import { ClientService } from '../client.service';
 export class ClientEditComponent implements OnInit {
 
   client : Client
+  errorMessage: string;
 
   constructor(
     public dialogRef: MatDialogRef<ClientEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -28,9 +31,17 @@ export class ClientEditComponent implements OnInit {
   }
 
   onSave() {
-    this.clientService.saveClient(this.client).subscribe(result => {
-      this.dialogRef.close();
-    });    
+    this.clientService.saveClient(this.client).subscribe({
+      next: (result) => {
+        this.dialogRef.close();
+      },
+      error: (error) => {
+        this.snackBar.open(error.message, 'Cerrar', {
+          duration: 5000
+        });
+      }
+    });
+        
   }  
 
   onClose() {

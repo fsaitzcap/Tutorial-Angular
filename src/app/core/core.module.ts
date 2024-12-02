@@ -5,6 +5,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -14,6 +16,8 @@ import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confir
     RouterModule,
     MatIconModule, 
     MatToolbarModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   exports: [
     HeaderComponent
