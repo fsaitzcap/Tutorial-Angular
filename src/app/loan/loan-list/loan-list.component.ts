@@ -11,6 +11,7 @@ import { GameService } from 'src/app/game/game.service';
 import { ClientService } from 'src/app/client/client.service';
 import { Client } from 'src/app/client/model/Client';
 import { PageRequest } from 'src/app/core/model/page/RequestPage';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-loan-list',
@@ -53,9 +54,11 @@ export class LoanListComponent {
     private gameService: GameService,
     private clientService: ClientService,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private dateAdapter: DateAdapter<Date>
   ) { }
 
   ngOnInit(): void {
+    this.dateAdapter.getFirstDayOfWeek = () => 1;
     this.loadPage();
     this.selectFilterItems();
   }
